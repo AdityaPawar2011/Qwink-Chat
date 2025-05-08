@@ -57,7 +57,7 @@
     background-color: #f44336; /* Red */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 15px 28px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -66,7 +66,7 @@
     cursor: pointer;
     border-radius: 5px;
 }
-#joinRoomButton:hover , #createRoomButton:hover{
+#joinRoomButton:hover , #createRoomButton:hover , #recentChatButtoon:hover{
     transition-duration: .5s;
     transform: scale(1.1);
 }
