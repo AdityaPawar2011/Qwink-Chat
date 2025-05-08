@@ -1,0 +1,40 @@
+.header-h {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: background-color 0.3s ease;
+    padding: 1rem;
+    z-index: 1000;
+    background-color: transparent; /* default when at top */
+}
+
+.header-h.scrolled {
+    background-color: black; /* when user scrolls */
+}
+
+.home {
+    background-color: #06061c;
+    padding-top: 80px; /* to make space for fixed header */
+}
+
+
+.hr{
+    width: 80%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 50px auto;
+}
+#after-h-t-w{
+    margin-top: 100px;
+}
+.footer{
+    background-color: #2e2e2e;
+
+}
+.copyright{
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}

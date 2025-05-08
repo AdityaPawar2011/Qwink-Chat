@@ -1,0 +1,42 @@
+.how-it-works {
+    display: flex;
+    justify-content: space-around;
+    gap: 80px;
+    margin: 100px auto;
+    width: 90%;
+}
+.step {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 30%;
+    height: auto;
+    display: flex;
+    opacity: 0;
+    flex-direction: column;
+    transition-duration: .5s;
+}
+.step p{
+    font-size: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+.h-in-how-it-works{
+    margin-top: 100px;
+    text-align: center;
+}
+
+#step3.scrolled{
+    transform: translateX(-50px);
+    opacity: 1;
+}
+#step2.scrolled{
+    opacity: 1;
+
+}
+#step1.scrolled{
+    transform: translateX(50px);
+    opacity: 1;
+
+}

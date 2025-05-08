@@ -1,0 +1,73 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+.example::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .example {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+.reviews{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.reviews h2{
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+.reviews-list {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 1350px;
+    position: relative;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar for all browsers */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+.reviews-list::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari and Opera */
+}
+.reviews-list:first-child{
+    margin-left: 2000px;
+}
+.reviews .review-card{
+    background-color: #636363;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    min-height: 300PX;
+    display: flex;
+    flex-direction: column;
+    gap: 30PX;
+    min-width: 280px;
+    position: relative;
+    scroll-snap-align: start;
+    cursor: pointer;
+}
+.reviews .review-card h4{
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.reviews .review-card p{
+    font-size: 1rem;
+}
+
+  .review-card {
+    user-select: none; /* optional: apply to each card too */
+  }
+  
+  .h2{
+    margin-top: 50px;
+  }

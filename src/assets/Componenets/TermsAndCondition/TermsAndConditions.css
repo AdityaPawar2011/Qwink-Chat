@@ -1,0 +1,62 @@
+/* TermsAndConditions.css */
+.terms-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: #06061c;
+    min-height: 100vh;
+    margin-top: 100px;
+  }
+  
+  .terms-card {
+    background-color: #1a1a40;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    border: 1px solid #2e2e50;
+  }
+  
+  .terms-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #f1f1f1;
+    border-bottom: 2px solid #4f46e5;
+    padding-bottom: 10px;
+  }
+  
+  .terms-text {
+    font-size: 16px;
+    color: #b0b0d0;
+    margin-bottom: 20px;
+    line-height: 1.7;
+  }
+  
+  .terms-list {
+    padding-left: 20px;
+    list-style-type: decimal;
+    color: #f1f1f1;
+  }
+  
+  .terms-list li {
+    margin-bottom: 15px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #b0b0d0;
+  }
+  
+  .terms-list li strong {
+    color: #f1f1f1;
+  }
+  
+  a {
+    color: #3f8cff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #5ea2ff;
+    text-decoration: underline;
+  }
+  
