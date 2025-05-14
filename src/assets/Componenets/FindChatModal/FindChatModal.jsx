@@ -1,29 +1,60 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './FindChatModal.css';
-
-const mockRooms = [
-  { name: 'Gaming Zone', tags: ['gaming', 'fps'], usersLimit: 10 },  
-  { name: 'Study Buddies', tags: ['study', 'homework'], usersLimit: 5 },
-  { name: 'Travel Talk', tags: ['travel', 'adventure'], usersLimit: 8 },
-];
-
-const mockUsers = [
-  { username: 'aditya_p', tags: ['gaming', 'study'] },
-  { username: 'neha_01', tags: ['travel', 'art'] },
-  { username: 'rahul007', tags: ['study', 'books'] },
-];
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 const FindChatModal = ({ onClose }) => {
   const [searchTag, setSearchTag] = useState('');
-  const [searchType, setSearchType] = useState('rooms'); // 'rooms', 'users', or 'both'
+  const [searchType, setSearchType] = useState('rooms'); // 'rooms', 'users', 'both'
+  const [allRooms, setAllRooms] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
-  const filteredRooms = mockRooms.filter(room =>
-    room.tags.includes(searchTag.toLowerCase())
-  );
+  const [filteredRooms, setFilteredRooms] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
-  const filteredUsers = mockUsers.filter(user =>
-    user.tags.includes(searchTag.toLowerCase())
-  );
+  useEffect(() => {
+    const db = getDatabase();
+
+    // Load all rooms and users once
+    const roomsRef = ref(db, 'rooms');
+    onValue(roomsRef, (snapshot) => {
+      const data = snapshot.val() || {};
+      setAllRooms(Object.values(data));
+    });
+
+    const usersRef = ref(db, 'users');
+    onValue(usersRef, (snapshot) => {
+      const data = snapshot.val() || {};
+      setAllUsers(Object.values(data));
+    });
+  }, []);
+
+  useEffect(() => {
+    const search = searchTag.trim().toLowerCase();
+
+    if (!search) {
+      setFilteredRooms([]);
+      setFilteredUsers([]);
+      return;
+    }
+
+    if (searchType === 'rooms' || searchType === 'both') {
+      const matchedRooms = allRooms.filter((room) =>
+        room.tags?.some((tag) => tag.toLowerCase().includes(search))
+      );
+      setFilteredRooms(matchedRooms);
+    } else {
+      setFilteredRooms([]);
+    }
+
+    if (searchType === 'users' || searchType === 'both') {
+      const matchedUsers = allUsers.filter((user) =>
+        user.username?.toLowerCase().includes(search)
+      );
+      setFilteredUsers(matchedUsers);
+    } else {
+      setFilteredUsers([]);
+    }
+  }, [searchTag, searchType, allRooms, allUsers]);
 
   return (
     <div className="modal-overlay">
@@ -34,7 +65,11 @@ const FindChatModal = ({ onClose }) => {
         <input
           type="text"
           className="search-tag"
-          placeholder="Enter tag to search..."
+          placeholder={
+            searchType === 'users'
+              ? 'Enter username to search...'
+              : 'Enter tag to search...'
+          }
           value={searchTag}
           onChange={(e) => setSearchTag(e.target.value)}
         />
@@ -72,13 +107,13 @@ const FindChatModal = ({ onClose }) => {
           </label>
         </div>
 
-        {(searchType === 'rooms' || searchType === 'both') && (
+        {searchTag.trim() && (searchType === 'rooms' || searchType === 'both') && (
           <div className="results-section">
             <h3>Matching Rooms</h3>
             {filteredRooms.length > 0 ? (
               filteredRooms.map((room, index) => (
                 <div key={index} className="result-item">
-                  <strong>{room.name}</strong> — Tags: {room.tags.join(', ')} | Limit: {room.usersLimit}
+                  <strong>{room.roomName}</strong> — Tags: {room.tags?.join(', ') || 'None'} | Limit: {room.maxUsers || '∞'}
                 </div>
               ))
             ) : (
@@ -87,19 +122,19 @@ const FindChatModal = ({ onClose }) => {
           </div>
         )}
 
-        {(searchType === 'users' || searchType === 'both') && (
+        {searchTag.trim() && (searchType === 'users' || searchType === 'both') && (
           <>
             <hr className="section-divider" />
             <div className="results-section">
-              <h3>Users with this Tag</h3>
+              <h3>Matching Users</h3>
               {filteredUsers.length > 0 ? (
                 filteredUsers.map((user, index) => (
                   <div key={index} className="result-item">
-                    👤 {user.username} — Tags: {user.tags.join(', ')}
+                    👤 {user.username} — Tags: {user.tags?.join(', ') || 'None'}
                   </div>
                 ))
               ) : (
-                <p className="no-result">No users found with this tag.</p>
+                <p className="no-result">No users found with that name.</p>
               )}
             </div>
           </>

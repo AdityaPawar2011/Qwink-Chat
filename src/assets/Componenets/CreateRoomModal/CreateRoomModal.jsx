@@ -66,7 +66,6 @@ const CreateRoomModal = ({ onClose }) => {
         lastActive: createdAt
       });
 
-      alert('Room created successfully!');
       navigate('/profile');
       onClose();
 
