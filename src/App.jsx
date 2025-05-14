@@ -12,9 +12,9 @@ import ContactUs from './assets/Componenets/ContactUs/ContactUs';
 import CommunityGuidelines from './assets/Componenets/CommunityGuidelines/CommunityGuidelines';
 import Header from './assets/Componenets/Home/Header/Header';
 import Footer from './assets/Componenets/Home/Footer/Footer';
-import ScrollToTop from './contexts/ScrollToTop';
 
 import './App.css';
+import ScrollToTop from './assets/contexts/ScrollToTop';
 
 function AppContent() {
   const location = useLocation();

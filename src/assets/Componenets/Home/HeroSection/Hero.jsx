@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './hero.css';
 import HeroImg from './../../../img/hero.gif';
-import { AuthContext } from '../../../../contexts/AuthContext';
 import LoginModal from '../../SignupModal/LoginModal';
 import SignupModal from '../../SignupModal/SignupModal';
 import CreateRoomModal from '../../CreateRoomModal/CreateRoomModal';
 import FindChatModal from '../../FindChatModal/FindChatModal';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 
 const Hero = () => {

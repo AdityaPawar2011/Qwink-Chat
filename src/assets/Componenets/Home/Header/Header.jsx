@@ -4,7 +4,7 @@ import Logo from './../../../img/logo.svg';
 import './Header.css';
 import { IoIosSearch } from "react-icons/io";
 import LoginModal from '../../SignupModal/LoginModal';
-import { AuthContext } from '../../../../contexts/AuthContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 const Header = () => {
     const [showLogin, setShowLogin] = useState(false);
